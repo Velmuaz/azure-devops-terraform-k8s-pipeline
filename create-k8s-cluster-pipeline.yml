@@ -26,11 +26,7 @@ steps:
     backendAzureRmKey: 'k8.tfstate'
 - task: TerraformCLI@0
   inputs:
-    command: 'init'
+    command: 'apply'
     workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure'
     environmentServiceName: 'azure-service-connection'
     commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
-    allowTelemetryCollection: true
-- task: DownloadSecureFile@1
-  inputs:
-    secureFile: 'azure_rsa.pub'
